@@ -23,7 +23,7 @@ const leaderboard = [
     { name: 'Mai con mua xe cho mẹ 😎', money: 25000, logo: 'img/6.gif' },
     { name: 'Âm 5k nữa là nợ 1 tỷ 😭', money: 10000, logo: 'img/7.gif' }
 ];
-let playerName = 'Nghiện quá rồi hihi'; // Tên người chơi
+let playerName = ''; // Tên người chơi
 
 // Bắt đầu bộ đếm thời gian
 function startTimer() {
@@ -157,46 +157,53 @@ function playGame(bet) {
 
 
 function updateLeaderboard() {
-    // Kiểm tra nếu người chơi có số xu lớn hơn một trong những người trong top 7
+    // Check if the player is already in the leaderboard
     let playerInLeaderboard = leaderboard.find(player => player.name === playerName);
 
     if (playerInLeaderboard) {
-        // Cập nhật xu của người chơi nếu họ đã có trong bảng xếp hạng
+        // Update the player's money if they are already in the leaderboard
         playerInLeaderboard.money = money;
     } else {
-        // Nếu người chơi chưa có trong bảng xếp hạng, kiểm tra xem có thể vào top không
+        // If the player is not in the leaderboard, check if they can enter the top
         const lowestRankedPlayer = leaderboard[leaderboard.length - 1];
         if (money > lowestRankedPlayer.money) {
-            // Nếu người chơi mới có số xu lớn hơn người ở cuối bảng xếp hạng
-            const replacedPlayer = leaderboard.pop(); // Lấy người chơi cuối cùng (người bị thay thế)
+            // If the new player has more money than the lowest ranked player
+            const replacedPlayer = leaderboard.pop(); // Remove the lowest ranked player
 
-            // Thêm người chơi mới vào bảng xếp hạng
-            leaderboard.push({ name: playerName, money: money, logo: replacedPlayer.logo }); // Gán logo của người bị thay thế
+            // Add the new player to the leaderboard with the logo of the replaced player
+            leaderboard.push({ name: playerName, money: money, logo: replacedPlayer.logo });
         }
     }
 
-    // Sắp xếp lại bảng xếp hạng theo số xu giảm dần
+    // Sort the leaderboard in descending order of money
     leaderboard.sort((a, b) => b.money - a.money);
 
-    // Giới hạn bảng xếp hạng chỉ hiển thị top 7
+    // Limit the leaderboard to show only the top 7 players
     const topPlayers = leaderboard.slice(0, 7);
 
-    // Hiển thị bảng xếp hạng mới
+    // Update logos based on the player's rank
+    topPlayers.forEach((player, index) => {
+        player.logo = `img/${index + 1}.gif`; // Update logo according to their position
+    });
+
+    // Display the updated leaderboard
     const leaderboardContainer = document.getElementById('leaderboard');
-    leaderboardContainer.innerHTML = ''; // Xóa nội dung cũ
+    leaderboardContainer.innerHTML = ''; // Clear previous contents
 
     topPlayers.forEach(player => {
         const playerDiv = document.createElement('div');
         playerDiv.innerHTML = `
-            <img src="${player.logo}" alt="${player.name}" style="width: 120px; height: 120px; border-radius: 50%;" />  <!-- Tăng kích thước logo -->
+            <img src="${player.logo}" alt="${player.name}" style="width: 120px; height: 120px; border-radius: 50%;" />
             <strong>${player.name}</strong> ${player.money} xu
         `;
         leaderboardContainer.appendChild(playerDiv);
     });
 
-    // Xóa người chơi ngoài top 7 khỏi bảng xếp hạng
+    // Remove players beyond the top 7 from the leaderboard
     leaderboard.splice(7);
 }
+
+
 
 
 
