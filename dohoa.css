@@ -180,7 +180,10 @@ body {
         font-weight: bold;
     }
     #betAmountInput, #usernameInput,  #codeInput{
-        width: 50%;
+        width: 45%;
+    }
+    #thongbao{
+        scale: 40%;
     }
     #betBlack, #betRed{
         width: 30%;
