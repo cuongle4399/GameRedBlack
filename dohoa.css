@@ -157,18 +157,19 @@ body {
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 10px; /* Giảm padding cho màn hình nhỏ */
+        font-size: 14px; /* Giảm kích thước chữ */
+    }
+
     .button {
-        width: 100%;
-        box-sizing: border-box;
+        width: 100%; /* Đảm bảo nút chiếm hết chiều rộng */
+        padding: 12px; /* Giảm padding cho nút */
+        font-size: 16px; /* Kích thước chữ nhỏ hơn cho nút */
     }
 
     #leaderboard div {
-        font-size: 24px; /* Kích thước chữ nhỏ hơn cho màn hình nhỏ */
-        padding: 15px; /* Giảm khoảng cách trong mỗi dòng */
-    }
-
-    #leaderboard img {
-        width: 80px; /* Giảm kích thước logo cho màn hình nhỏ */
-        height: 80px; /* Giảm kích thước logo cho màn hình nhỏ */
+        font-size: 18px; /* Kích thước chữ nhỏ hơn cho bảng xếp hạng */
+        padding: 10px; /* Giảm padding cho mỗi dòng */
     }
 }
