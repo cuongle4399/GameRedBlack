@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo web vip4.jpg" type="image/x-icon">
+    <title>Game- Cường lê</title>
+    <link rel="stylesheet" href="dohoa.css">
+</head>
+
+<body>
+<div id="notificationModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="closeNotificationButton">&times;</span>
+        <h2>Thông Báo</h2>
+        <p>Chào mừng bạn đến với trò chơi! Chúc bạn chơi vui vẻ!</p>
+        <p style="color: red;">Lưu ý: Đây chỉ là 1 một mini game giải trí không mang tính bài bạc !!!</p>
+        <img style="position: relative" src ="img/thongbao.gif">
+    </div>
+</div>
+
+    <img src="img/logoweb.png">
+
+    <input type="text" id="usernameInput" placeholder="Nhập tên của bạn" value="Chú bé đần 😎" />
+    <div id="balance">Số xu hiện có: <span id="money">10000</span> xu</div>
+    <div id="timer"><span id="time">15</span> giây</div>
+    <input type="number" id="betAmountInput" placeholder="Nhập số xu đặt cược" value="1000" />
+
+    <button class="button" id="betRed">Đặt Đỏ</button>
+    <button class="button" id="betBlack">Đặt Đen</button>
+
+    <div id="resultContainer" style="position: relative;">
+        <div id="loadingImage"
+            style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+            <img src="img/loadlag.gif" alt="Loading" style="width: 50px;" />
+        </div>
+        <div id="dice"></div>
+        <div id="result"></div>
+    </div>
+    <h2 style="font-size: 70px; color: #ff8400;margin-top:250px">Bảng Xếp Hạng</h2>
+    <div id="leaderboard"></div>
+    <input type="text" id="codeInput" placeholder="Nhập gifcode để nhận xu" />
+    <button class="button" id="codeButton">Nhận xu</button>
+    <script src="code.js">
+    </script>
+</body>
+
+</html>
