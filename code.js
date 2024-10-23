@@ -70,10 +70,15 @@ document.getElementById('codeButton').addEventListener('click', function () {
 function redeemCode(code) {
     if (code === 'cuongle') { // Mã hợp lệ
         money += 10000;
-        document.getElementById('result').innerText = 'Bạn đã nhận 10000 xu!';
+        document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
+        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+    }
+    else if(code === 'adminvip'){
+        money += 1000000;
+        document.getElementById('code').innerText = 'Bạn đã nhận 1.000.000 xu!';
         document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
     } else {
-        document.getElementById('result').innerText = 'Mã không hợp lệ!';
+        document.getElementById('code').innerText = 'Mã không hợp lệ!';
     }
     document.getElementById('codeInput').value = ''; // Xóa ô nhập
 }

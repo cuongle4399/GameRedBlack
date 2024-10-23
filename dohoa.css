@@ -59,7 +59,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 38px;
     transition: background-color 0.3s, transform 0.2s;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Thêm bóng cho nút */
 }
@@ -151,10 +151,17 @@ body {
 }
 
 #leaderboard img {
-    width: 120px; /* Kích thước logo (giữ lại kích thước này) */
-    height: 120px; /* Kích thước logo (giữ lại kích thước này) */
-    border-radius: 50%; /* Giữ hình tròn cho logo */
-    margin-right: 10px; /* Khoảng cách giữa logo và tên người chơi */
+    width: 120px; 
+    height: 120px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+#code{
+    font-size: 48px;
+    font-weight: bold;
+}
+#codeInput,#betAmountInput, #usernameInput {
+    width: 60%;
 }
 #logo{
     max-width: 100%;
@@ -168,16 +175,14 @@ body {
         left:15%;
         max-width: none;
     }
-    #usernameInput{
-        width: 80%;
+    #code{
+        font-size: 18px;
+        font-weight: bold;
     }
-    #betAmountInput{
-        width: 80%;
+    #betAmountInput, #usernameInput,  #codeInput{
+        width: 50%;
     }
-    #betRed{
-        width: 30%; 
-    }
-    #betBlack{
+    #betBlack, #betRed{
         width: 30%;
     }
 
