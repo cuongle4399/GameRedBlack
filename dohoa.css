@@ -160,6 +160,7 @@ body {
     body {
         padding: 10px; /* Giảm padding cho màn hình nhỏ */
         font-size: 14px; /* Giảm kích thước chữ */
+        max-width: 600px;
     }
 
     .button {
