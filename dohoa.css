@@ -46,10 +46,9 @@ body {
     max-width: 1200px;
     margin: 50px auto;
     background-image: url(img/backgroud.jpg);
-    background-size: cover; /* Scale the background image to cover the entire element */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    height: 100vh; /* Ensure the body takes the full viewport height */
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
 
 .button {
@@ -72,9 +71,9 @@ body {
 
 #result {
     margin-top: 20px;
-    font-size: 24px;
+    font-size: 34px;
     font-weight: bold;
-    color: #333;
+    color: #080808;
 }
 
 #dice {
@@ -108,12 +107,14 @@ body {
 }
 
 #codeInput, #betAmountInput, #usernameInput {
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    padding: 15px;
     font-size: 36px;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
+    text-align: center;
     transition: border-color 0.3s; /* Thêm hiệu ứng chuyển đổi */
 }
 
@@ -155,12 +156,29 @@ body {
     border-radius: 50%; /* Giữ hình tròn cho logo */
     margin-right: 10px; /* Khoảng cách giữa logo và tên người chơi */
 }
-
+#logo{
+    max-width: 100%;
+    height: auto;
+}
 @media (max-width: 600px) {
     body {
-        padding: 10px; /* Giảm padding cho màn hình nhỏ */
         font-size: 14px; /* Giảm kích thước chữ */
-        max-width: 600px;
+        padding: 0px;
+        position: relative;
+        left:15%;
+        max-width: none;
+    }
+    #usernameInput{
+        width: 80%;
+    }
+    #betAmountInput{
+        width: 80%;
+    }
+    #betRed{
+        width: 30%; 
+    }
+    #betBlack{
+        width: 30%;
     }
 
     .button {
@@ -172,5 +190,10 @@ body {
     #leaderboard div {
         font-size: 18px; /* Kích thước chữ nhỏ hơn cho bảng xếp hạng */
         padding: 10px; /* Giảm padding cho mỗi dòng */
+    }
+    #notificationModal {
+        scale: 50%;
+        position: static;
+
     }
 }
