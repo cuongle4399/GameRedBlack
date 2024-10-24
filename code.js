@@ -1,6 +1,6 @@
 function dongtab() {
     const notificationModal = document.getElementById('notificationModal');
-    notificationModal.style.display = 'none'; // Hiển thị thông báo
+    notificationModal.style.display = 'none'; 
 }
 function autoCloseModal() {
     setTimeout(dongtab, 1500);
@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 var nameTopBxh = [];
 var codenhap = 0;
-let money = 10000; // Số xu bắt đầu
-let betAmount = 10; // Số xu cố định cho mỗi lượt cược
-let timer; // Biến để lưu timer
-let timeLeft = 15; // Thời gian còn lại
-let isPlaying = false; // Biến kiểm soát trạng thái chơi
-let currentBet = null; // Lưu cược hiện tại
+let money = 10000; 
+let betAmount = 10; 
+let timer; 
+let timeLeft = 15; 
+let isPlaying = false; 
+let currentBet = null; 
 const leaderboard = [
     { name: 'Tao không có nghiện 😡', money: 1000000, logo: 'img/1.gif' },
     { name: 'hôm nay 1 tỷ ngày mai 1000 tỷ 🤤', money: 500000, logo: 'img/2.gif' },
@@ -25,27 +25,25 @@ const leaderboard = [
     { name: 'Mai con mua xe cho mẹ 😎', money: 25000, logo: 'img/6.gif' },
     { name: 'Âm 5k nữa là nợ 1 tỷ 😭', money: 10000, logo: 'img/7.gif' }
 ];
-let playerName = document.getElementById('usernameInput').value.trim(); // Tên người chơi
+let playerName = document.getElementById('usernameInput').value.trim(); 
 
-// Bắt đầu bộ đếm thời gian
 function startTimer() {
-    timeLeft = 15; // Đặt lại thời gian
-    document.getElementById('time').innerText = timeLeft; // Hiển thị thời gian ban đầu
+    timeLeft = 15; 
+    document.getElementById('time').innerText = timeLeft; 
 
-    clearInterval(timer); // Dừng timer trước đó nếu có
+    clearInterval(timer); 
     timer = setInterval(function () {
-        timeLeft--; // Giảm thời gian
-        document.getElementById('time').innerText = timeLeft; // Cập nhật thời gian
+        timeLeft--; 
+        document.getElementById('time').innerText = timeLeft; 
 
         if (timeLeft <= 0) {
-            clearInterval(timer); // Dừng timer
-            playGame(currentBet); // Chơi game với cược hiện tại
-            startTimer(); // Khởi động lại timer về 15 giây
+            clearInterval(timer);
+            playGame(currentBet); 
+            startTimer(); 
         } else if (timeLeft === 3) {
-            // Hiện hình ảnh loading khi còn 3 giây
             document.getElementById('loadingImage').style.display = 'block';
         }
-    }, 1000); // Cập nhật mỗi giây
+    }, 1000); 
 }
 
 document.getElementById('betRed').addEventListener('click', function () {
@@ -74,43 +72,43 @@ function redeemCode(code) {
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã hết số lần nhập code. Đã Thua';
     }
-    else if (code === 'cuongle') { // Mã hợp lệ
+    else if (code === 'cuongle') { 
         money += 10000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
-        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        document.getElementById('money').innerText = money; 
         codenhap++;
         updateLeaderboard();
     }
-    else if (code === 'chienthan207') { // Mã hợp lệ
+    else if (code === 'chienthan207') { 
         money += 10000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
-        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        document.getElementById('money').innerText = money; 
         updateLeaderboard();
         codenhap++;
     }
-    else if (code === 'nhanthuong') { // Mã hợp lệ
+    else if (code === 'nhanthuong') { 
         money += 10000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
-        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        document.getElementById('money').innerText = money; 
         updateLeaderboard();
         codenhap++;
     }
-    else if (code === 'codenehehe') { // Mã hợp lệ
+    else if (code === 'codenehehe') { 
         money += 10000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
-        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        document.getElementById('money').innerText = money; 
         updateLeaderboard();
         codenhap++;
     }
-    else if (code === 'abccodevip') { // Mã hợp lệ
+    else if (code === 'abccodevip') { 
         money += 10000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
-        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        document.getElementById('money').innerText = money; 
         updateLeaderboard();
         codenhap++;
     }
@@ -118,29 +116,27 @@ function redeemCode(code) {
         money += 1000000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 1.000.000 xu!';
-        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        document.getElementById('money').innerText = money; 
         updateLeaderboard()
         codenhap++;
     } else {
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Mã không hợp lệ!';
     }
-    document.getElementById('codeInput').value = ''; // Xóa ô nhập
-    // Ẩn thông báo sau 2 giây
+    document.getElementById('codeInput').value = ''; 
     setTimeout(() => {
         document.getElementById('code').style.display = 'none';
     }, 4000);
 }
 
 function waitForResult(bet) {
-    playerName = document.getElementById('usernameInput').value.trim(); // Lấy tên người chơi
+    playerName = document.getElementById('usernameInput').value.trim(); 
     if (playerName === '') {
         alert('Vui lòng nhập tên của bạn!');
         return;
     }
 
-    // Lấy số xu đặt cược từ ô nhập và kiểm tra
-    betAmount = parseInt(document.getElementById('betAmountInput').value); // Chỉ cần parseInt
+    betAmount = parseInt(document.getElementById('betAmountInput').value); 
     if (isNaN(betAmount) || betAmount <= 0) {
         alert('Vui lòng nhập số xu cược hợp lệ!');
         return;
@@ -151,149 +147,115 @@ function waitForResult(bet) {
         return;
     }
 
-    currentBet = bet; // Lưu lại cược hiện tại (đỏ hoặc đen)
-    isPlaying = true; // Đánh dấu trạng thái đang chơi
-    money -= betAmount; // Trừ xu cược khỏi tổng xu
-    document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+    currentBet = bet; 
+    isPlaying = true; 
+    money -= betAmount; 
+    document.getElementById('money').innerText = money; 
     document.getElementById('result').innerText = `Bạn đã đặt ${betAmount} vào ${bet === 'red' ? 'Đỏ' : 'Đen'}`;
 }
 
-
 function playGame(bet) {
-    // Ẩn loading và hiện kết quả
     document.getElementById('loadingImage').style.display = 'none';
 
-    // Kết quả ngẫu nhiên của ba cục xúc xắc
     const randomResult1 = Math.random() < 0.5 ? 'red' : 'black';
     const randomResult2 = Math.random() < 0.5 ? 'red' : 'black';
     const randomResult3 = Math.random() < 0.5 ? 'red' : 'black';
 
-    // Hiển thị ba cục xúc xắc
     document.getElementById('dice').innerHTML = `
         <div class="circle" style="background-color: ${randomResult1}; width: 50px; height: 50px; border-radius: 50%; display: inline-block;"></div>
         <div class="circle" style="background-color: ${randomResult2}; width: 50px; height: 50px; border-radius: 50%; display: inline-block;"></div>
         <div class="circle" style="background-color: ${randomResult3}; width: 50px; height: 50px; border-radius: 50%; display: inline-block;"></div>
     `;
 
-    // Kiểm tra xem có bao nhiêu cục xúc xắc có màu giống với cược
     const results = [randomResult1, randomResult2, randomResult3];
     const matchingResults = results.filter(result => result === bet).length;
 
-    // Thắng nếu có ít nhất 2 cục xúc xắc giống với màu đã cược
     if (matchingResults >= 2) {
-        const winnings = betAmount * 2; // Thắng thì được gấp 2 lần số xu đặt cược
+        const winnings = betAmount * 2; 
         money += winnings;
         document.getElementById('result').innerText = `Bạn đã thắng ${winnings} xu!`;
     } else {
-        // Chỉ thông báo thua nếu người chơi đã đặt cược
         if (currentBet !== null) {
             document.getElementById('result').innerText = 'Bạn đã thua!';
         }
     }
 
-    // Cập nhật số xu sau khi chơi
-    document.getElementById('money').innerText = money;
-    isPlaying = false; // Đặt lại trạng thái cho phép chơi tiếp
-    currentBet = null; // Xóa cược hiện tại
-    updateLeaderboard(); // Cập nhật bảng xếp hạng
 
-    // Ẩn thông báo sau 5 giây
+    document.getElementById('money').innerText = money;
+    isPlaying = false; 
+    currentBet = null; 
+    updateLeaderboard(); 
+
     setTimeout(() => {
-        document.getElementById('result').innerText = ''; // Xóa thông báo
-    }, 5000); // 5000 milliseconds = 5 seconds
+        document.getElementById('result').innerText = ''; 
+    }, 5000); 
 }
 
 function formatMoney(amount) {
-    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Formats the number with commas
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
 }
 
 function updateLeaderboard() {
-    // Check if the player is already in the leaderboard
     let playerInLeaderboard = leaderboard.find(player => player.name === playerName);
 
     if (playerInLeaderboard) {
-        // Update the player's money if they are already in the leaderboard
         playerInLeaderboard.money = money;
     } else {
-        // If the player is not in the leaderboard, check if they can enter the top
         const lowestRankedPlayer = leaderboard[leaderboard.length - 1];
         if (money > lowestRankedPlayer.money) {
-            // If the new player has more money than the lowest ranked player
-            leaderboard.pop(); // Remove the lowest ranked player
-
-            // Add the new player to the leaderboard without changing the logo
+            leaderboard.pop(); 
             leaderboard.push({ name: playerName, money: money, logo: lowestRankedPlayer.logo });
         }
     }
 
-    // Sort the leaderboard in descending order of money
     leaderboard.sort((a, b) => b.money - a.money);
-
-    // Limit the leaderboard to show only the top 7 players
     const topPlayers = leaderboard.slice(0, 7);
-
-    // Update logos based on the player's rank and ensure logos are fixed
     topPlayers.forEach((player, index) => {
-        player.logo = `img/${index + 1}.gif`; // Cố định logo theo vị trí
+        player.logo = `img/${index + 1}.gif`; 
     });
-
-    // Randomly adjust money for top players, except the current user
     topPlayers.forEach(player => {
         if (player.name !== playerName && player.money > 0) {
-            const randomAdjustment = Math.random() < 0.5 ? 10000 : -10000; // Randomly decide to add or subtract 10000
+            const randomAdjustment = Math.random() < 0.5 ? 10000 : -10000; 
             player.money += randomAdjustment;
 
-            // Ensure money does not go below 0
             if (player.money < 0) {
                 player.money = 0;
             }
         }
     });
 
-    // Kiểm tra xem người chơi có đạt top 1 không
     if (topPlayers.length > 1 && topPlayers[0].name === playerName) {
-        // Người chơi thứ 2 sẽ ngẫu nhiên +500000 hoặc -200000
         const secondPlayer = topPlayers[1];
-        const bonusAdjustment = Math.random() < 0.5 ? 500000 : -200000; // Randomly decide to add 500000 or subtract 200000
+        const bonusAdjustment = Math.random() < 0.5 ? 500000 : -200000; 
         secondPlayer.money += bonusAdjustment;
 
-        // Ensure money does not go below 0 for the second player
         if (secondPlayer.money < 0) {
             secondPlayer.money = 0;
         }
     }
 
-    // Kiểm tra xem có ai có số dư bằng 0 không và không phải tên người chơi
     topPlayers.forEach(player => {
         if (player.money === 0 && player.name !== playerName) {
-            // Tạo một tên ngẫu nhiên cho người chơi mới
             const randomNames = ["Minh", "Hoàng", "Phúc", "Linh", "Trang", "Nam", "Bình"];
             const newName = randomNames[Math.floor(Math.random() * randomNames.length)];
 
-            // Thêm người chơi mới vào bảng xếp hạng
             leaderboard.push({ name: newName, money: 50000, logo: `img/${topPlayers.length + 1}.gif` });
         }
     });
 
-    // Sort lại bảng xếp hạng sau khi có người chơi mới
     leaderboard.sort((a, b) => b.money - a.money);
     
-    // Limit the leaderboard to show only the top 7 players again
     const updatedTopPlayers = leaderboard.slice(0, 7);
 
-    // Display the updated leaderboard
     const leaderboardContainer = document.getElementById('leaderboard');
-    leaderboardContainer.innerHTML = ''; // Clear previous contents
+    leaderboardContainer.innerHTML = ''; 
 
     updatedTopPlayers.forEach(player => {
         const playerDiv = document.createElement('div');
         
-        // Tạo nội dung với tên người chơi
         const playerNameStyle = player.name === playerName 
             ? 'style="color: black; font-weight: bold;"' 
             : '';
-
-        // Format money and apply styles
         const formattedMoney = formatMoney(player.money);
         const moneyStyle = 'style="font-weight: bold; color: #ffcc00; background-color: #333; padding: 5px; border-radius: 5px;"'; // Stylish money display
 
@@ -305,34 +267,28 @@ function updateLeaderboard() {
         leaderboardContainer.appendChild(playerDiv);
     });
 
-    // Remove players beyond the top 7 from the leaderboard
     leaderboard.splice(7);
 }
 
-
-
-// Khởi động trò chơi khi trang được tải
 window.onload = function () {
-    startTimer(); // Bắt đầu bộ đếm thời gian
-    updateLeaderboard(); // Hiển thị bảng xếp hạng ban đầu
+    startTimer(); 
+    updateLeaderboard(); 
 };
 const chatBox = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');
 
-// Hàm thêm tin nhắn vào chat
 function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message', sender);
-    messageDiv.innerHTML = text; // Dùng innerHTML để hỗ trợ hình ảnh
+    messageDiv.innerHTML = text; 
     chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight; // Cuộn xuống dưới cùng
+    chatBox.scrollTop = chatBox.scrollHeight; 
     if (chatBox.children.length > 100) {
-        chatBox.removeChild(chatBox.firstChild); // Xóa tin nhắn đầu tiên
+        chatBox.removeChild(chatBox.firstChild); 
     }
 }
 
-// Bot tự động chat
 function botChat() {
     const botMessages = [
         "Chào bạn! Hôm nay bạn có khỏe không?",
@@ -395,74 +351,64 @@ function botChat() {
         "Cảm giác khi đặt cược vào đội mình yêu thích thật phấn khích!"
     ];
 
-    // Lấy tên bot ngẫu nhiên từ bảng xếp hạng
+
     const randomBotNames = leaderboard.map(player => player.name); 
 
-    // Danh sách tên bot không có trong bảng xếp hạng
-    const additionalBotNames = ["Dương", "Cường", "Long","An","Hùng", "Thắng", "Con nghiện"]; // Thay thế tên bằng những cái tên bạn muốn
+    const additionalBotNames = ["Dương", "Cường", "Long","An","Hùng", "Thắng", "Con nghiện"]; 
 
-    // Kết hợp hai danh sách tên bot
     const allBotNames = randomBotNames.concat(additionalBotNames); 
 
-    // Lấy tin nhắn ngẫu nhiên và tên bot ngẫu nhiên
     const randomMessage = botMessages[Math.floor(Math.random() * botMessages.length)];
     const randomBotName = allBotNames[Math.floor(Math.random() * allBotNames.length)];
 
-    // Tìm chỉ số của người chơi trong bảng xếp hạng
-    if (Math.random() < 0.05) { // 5% xác suất
+    if (Math.random() < 0.05) { 
         addAdminMessage("Gitcode:Cuongle để nhận 10k xu nè ae ơi !!!!😉😉");
     }
-    if (Math.random() < 0.04) { // 5% xác suất
+    if (Math.random() < 0.04) { 
         addAdminMessage("Gitcode:codenehehe để nhận 10k xu nè ae ơi !!!!😉😉");
     }
-    if (Math.random() < 0.01) { // 5% xác suất
+    if (Math.random() < 0.01) { 
         addAdminMessage("Gitcode:abccodevip để nhận 10k xu nè ae ơi !!!!😉😉");
     }
-    if (Math.random() < 0.03) { // 5% xác suất
+    if (Math.random() < 0.03) { 
         addAdminMessage("Gitcode:nhanthuong để nhận 10k xu nè ae ơi !!!!😉😉");
     }
-    if (Math.random() < 0.02) { // 5% xác suất
+    if (Math.random() < 0.02) { 
         addAdminMessage("Gitcode:chienthan207 để nhận 10k xu nè ae ơi !!!!😉😉");
     }
-    if (Math.random() < 0.001) { // 0.1% xác suất
+    if (Math.random() < 0.001) { 
         addAdminMessage("Gitcode:adminvip để nhận 1tr xu nè ae ơi !!!!😍😍😍");
     }
     const matchingPlayerIndex = leaderboard.findIndex(player => player.name === randomBotName);
     let logoHtml = '';
     if (matchingPlayerIndex !== -1) {
-        const rank = matchingPlayerIndex + 1; // Lấy thứ hạng (chỉ số bắt đầu từ 1)
-        const logo = `img/${rank}.gif`; // Đường dẫn đến logo
+        const rank = matchingPlayerIndex + 1; 
+        const logo = `img/${rank}.gif`; 
         logoHtml = `<img src="${logo}" alt="Rank ${rank}" style="width: 60px; border-radius: 50%;">`;
     } else {
-        // Nếu không phải tên trong bảng xếp hạng, sử dụng logo mặc định
         logoHtml = `<img src="img/8.png" alt="Default Logo" style="width: 60px; border-radius: 50%;">`;
     }
 
-    // Thêm tin nhắn với logo và tên
     addMessage(logoHtml + `<strong style="font-size: 1.5em;">${randomBotName}:</strong> <span style="font-size: 1.5em;">${randomMessage}</span>`, 'bot');
 }
 
 
-// Gửi tin nhắn của người dùng
 sendButton.addEventListener('click', () => {
     const userMessage = userInput.value;
     if (userMessage) {
         addMessage(userMessage, 'user');
-        userInput.value = ''; // Xóa ô nhập
-        setTimeout(botChat, 1000); // Bot trả lời sau 0.3 giây
+        userInput.value = ''; 
+        setTimeout(botChat, 1000); 
     }
 });
 
-// Xử lý nhấn phím Enter
 userInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
         sendButton.click();
     }
 });
 
-// Gọi bot chat mỗi 5 giây
 setInterval(botChat, 1700);
-// Hàm để gửi thông báo ADMIN
 function addAdminMessage(text) {
     const adminMessage = text || "Thông báo từ ADMIN: Hãy chơi có trách nhiệm!";
     const adminLogoHtml = `<img src="img/admin.png" alt="ADMIN" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">`;
@@ -478,10 +424,9 @@ function addAdminMessage(text) {
     `;
     
     chatBox.appendChild(messageDiv);
-    chatBox.scrollTop = chatBox.scrollHeight; // Cuộn xuống dưới cùng
+    chatBox.scrollTop = chatBox.scrollHeight; 
 
-    // Giới hạn số lượng tin nhắn trong kênh chat
     if (chatBox.children.length > 100) {
-        chatBox.removeChild(chatBox.firstChild); // Xóa tin nhắn đầu tiên
+        chatBox.removeChild(chatBox.firstChild); 
     }
 }
