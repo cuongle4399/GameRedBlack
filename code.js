@@ -74,12 +74,14 @@ function redeemCode(code) {
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
         document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        updateLeaderboard()
     }
     else if(code === 'adminvip'){
         money += 1000000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 1.000.000 xu!';
         document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        updateLeaderboard()
     } else {
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Mã không hợp lệ!';
@@ -162,8 +164,6 @@ function playGame(bet) {
     }, 5000); // 5000 milliseconds = 5 seconds
 }
 
-
-
 function updateLeaderboard() {
     // Check if the player is already in the leaderboard
     let playerInLeaderboard = leaderboard.find(player => player.name === playerName);
@@ -176,10 +176,10 @@ function updateLeaderboard() {
         const lowestRankedPlayer = leaderboard[leaderboard.length - 1];
         if (money > lowestRankedPlayer.money) {
             // If the new player has more money than the lowest ranked player
-            const replacedPlayer = leaderboard.pop(); // Remove the lowest ranked player
+            leaderboard.pop(); // Remove the lowest ranked player
 
-            // Add the new player to the leaderboard with the logo of the replaced player
-            leaderboard.push({ name: playerName, money: money, logo: replacedPlayer.logo });
+            // Add the new player to the leaderboard without changing the logo
+            leaderboard.push({ name: playerName, money: money, logo: lowestRankedPlayer.logo });
         }
     }
 
@@ -189,21 +189,70 @@ function updateLeaderboard() {
     // Limit the leaderboard to show only the top 7 players
     const topPlayers = leaderboard.slice(0, 7);
 
-    // Update logos based on the player's rank
+    // Update logos based on the player's rank and ensure logos are fixed
     topPlayers.forEach((player, index) => {
-        player.logo = `img/${index + 1}.gif`; // Update logo according to their position
-        top = index;
+        player.logo = `img/${index + 1}.gif`; // Cố định logo theo vị trí
     });
+
+    // Randomly adjust money for top players, except the current user
+    topPlayers.forEach(player => {
+        if (player.name !== playerName && player.money > 0) {
+            const randomAdjustment = Math.random() < 0.5 ? 10000 : -10000; // Randomly decide to add or subtract 10000
+            player.money += randomAdjustment;
+
+            // Ensure money does not go below 0
+            if (player.money < 0) {
+                player.money = 0;
+            }
+        }
+    });
+
+    // Kiểm tra xem người chơi có đạt top 1 không
+    if (topPlayers.length > 1 && topPlayers[0].name === playerName) {
+        // Người chơi thứ 2 sẽ ngẫu nhiên +500000 hoặc -200000
+        const secondPlayer = topPlayers[1];
+        const bonusAdjustment = Math.random() < 0.5 ? 500000 : -200000; // Randomly decide to add 500000 or subtract 200000
+        secondPlayer.money += bonusAdjustment;
+
+        // Ensure money does not go below 0 for the second player
+        if (secondPlayer.money < 0) {
+            secondPlayer.money = 0;
+        }
+    }
+
+    // Kiểm tra xem có ai có số dư bằng 0 không và không phải tên người chơi
+    topPlayers.forEach(player => {
+        if (player.money === 0 && player.name !== playerName) {
+            // Tạo một tên ngẫu nhiên cho người chơi mới
+            const randomNames = ["Minh", "Hoàng", "Phúc", "Linh", "Trang", "Nam", "Bình"];
+            const newName = randomNames[Math.floor(Math.random() * randomNames.length)];
+
+            // Thêm người chơi mới vào bảng xếp hạng
+            leaderboard.push({ name: newName, money: 50000, logo: `img/${topPlayers.length + 1}.gif` });
+        }
+    });
+
+    // Sort lại bảng xếp hạng sau khi có người chơi mới
+    leaderboard.sort((a, b) => b.money - a.money);
+    
+    // Limit the leaderboard to show only the top 7 players again
+    const updatedTopPlayers = leaderboard.slice(0, 7);
 
     // Display the updated leaderboard
     const leaderboardContainer = document.getElementById('leaderboard');
     leaderboardContainer.innerHTML = ''; // Clear previous contents
 
-    topPlayers.forEach(player => {
+    updatedTopPlayers.forEach(player => {
         const playerDiv = document.createElement('div');
+        
+        // Tạo nội dung với tên người chơi
+        const playerNameStyle = player.name === playerName 
+            ? 'style="color: black; font-weight: bold;"' 
+            : '';
+
         playerDiv.innerHTML = `
             <img src="${player.logo}" alt="${player.name}" style="width: 120px; height: 120px; border-radius: 50%;" />
-            <strong>${player.name}</strong> ${player.money} xu
+            <strong ${playerNameStyle}>${player.name}</strong> ${player.money} xu
         `;
         nameTopBxh.push(playerDiv);
         leaderboardContainer.appendChild(playerDiv);
@@ -212,6 +261,7 @@ function updateLeaderboard() {
     // Remove players beyond the top 7 from the leaderboard
     leaderboard.splice(7);
 }
+
 
 // Khởi động trò chơi khi trang được tải
 window.onload = function () {
@@ -311,8 +361,11 @@ function botChat() {
     const randomBotName = allBotNames[Math.floor(Math.random() * allBotNames.length)];
 
     // Tìm chỉ số của người chơi trong bảng xếp hạng
-    if (Math.random() < 0.05) { // 10% xác suất
-        addAdminMessage("Gitcode:Cuongle để nhận 10k xu nè ae ơi !!!!");
+    if (Math.random() < 0.05) { // 5% xác suất
+        addAdminMessage("Gitcode:Cuongle để nhận 10k xu nè ae ơi !!!!😉😉");
+    }
+    if (Math.random() < 0.001) { // 0.1% xác suất
+        addAdminMessage("Gitcode:adminvip để nhận 1tr xu nè ae ơi !!!!😍😍😍");
     }
     const matchingPlayerIndex = leaderboard.findIndex(player => player.name === randomBotName);
     let logoHtml = '';
