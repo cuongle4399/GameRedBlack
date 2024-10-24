@@ -167,6 +167,51 @@ body {
     max-width: 100%;
     height: auto;
 }
+#chatBox {
+    width: 100%;
+    max-width: 1200px;
+    height: 600px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+#userInput {
+    width: calc(100% - 120px);
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#sendButton {
+    padding: 10px;
+    background-color: #0aa1f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.message {
+    margin: 5px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+.bot {
+    background-color: #d1e7dd;
+    text-align: left;
+    font-weight: bold;
+}
+.user {
+    background-color: #0aa1f3;
+    color: white;
+    text-align: left;
+}
+.rankingLogo {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
 @media (max-width: 600px) {
     body {
         font-size: 14px; /* Giảm kích thước chữ */
@@ -180,7 +225,7 @@ body {
         font-weight: bold;
     }
     #betAmountInput, #usernameInput,  #codeInput{
-        width: 45%;
+        width: 55%;
     }
     #thongbao{
         scale: 40%;
