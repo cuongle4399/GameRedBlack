@@ -8,7 +8,8 @@ function autoCloseModal() {
 document.addEventListener('DOMContentLoaded', function() {
     autoCloseModal();
 });
-var nameTopBxh = []
+var nameTopBxh = [];
+var codenhap = 0;
 let money = 10000; // Số xu bắt đầu
 let betAmount = 10; // Số xu cố định cho mỗi lượt cược
 let timer; // Biến để lưu timer
@@ -69,12 +70,49 @@ document.getElementById('codeButton').addEventListener('click', function () {
 });
 
 function redeemCode(code) {
-    if (code === 'cuongle') { // Mã hợp lệ
+    if(codenhap >=5 && code === 'cuongle' && code === 'adminvip' && code === 'chienthan207' ){
+        document.getElementById('code').style.display = 'block';
+        document.getElementById('code').innerText = 'Bạn đã hết số lần nhập code. Đã Thua';
+    }
+    else if (code === 'cuongle') { // Mã hợp lệ
         money += 10000;
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
         document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
-        updateLeaderboard()
+        codenhap++;
+        updateLeaderboard();
+    }
+    else if (code === 'chienthan207') { // Mã hợp lệ
+        money += 10000;
+        document.getElementById('code').style.display = 'block';
+        document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
+        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        updateLeaderboard();
+        codenhap++;
+    }
+    else if (code === 'nhanthuong') { // Mã hợp lệ
+        money += 10000;
+        document.getElementById('code').style.display = 'block';
+        document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
+        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        updateLeaderboard();
+        codenhap++;
+    }
+    else if (code === 'codenehehe') { // Mã hợp lệ
+        money += 10000;
+        document.getElementById('code').style.display = 'block';
+        document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
+        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        updateLeaderboard();
+        codenhap++;
+    }
+    else if (code === 'abccodevip') { // Mã hợp lệ
+        money += 10000;
+        document.getElementById('code').style.display = 'block';
+        document.getElementById('code').innerText = 'Bạn đã nhận 10.000 xu!';
+        document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
+        updateLeaderboard();
+        codenhap++;
     }
     else if(code === 'adminvip'){
         money += 1000000;
@@ -82,6 +120,7 @@ function redeemCode(code) {
         document.getElementById('code').innerText = 'Bạn đã nhận 1.000.000 xu!';
         document.getElementById('money').innerText = money; // Cập nhật số xu hiện có
         updateLeaderboard()
+        codenhap++;
     } else {
         document.getElementById('code').style.display = 'block';
         document.getElementById('code').innerText = 'Mã không hợp lệ!';
@@ -90,7 +129,7 @@ function redeemCode(code) {
     // Ẩn thông báo sau 2 giây
     setTimeout(() => {
         document.getElementById('code').style.display = 'none';
-    }, 2000);
+    }, 4000);
 }
 
 function waitForResult(bet) {
@@ -162,6 +201,10 @@ function playGame(bet) {
     setTimeout(() => {
         document.getElementById('result').innerText = ''; // Xóa thông báo
     }, 5000); // 5000 milliseconds = 5 seconds
+}
+
+function formatMoney(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Formats the number with commas
 }
 
 function updateLeaderboard() {
@@ -250,9 +293,13 @@ function updateLeaderboard() {
             ? 'style="color: black; font-weight: bold;"' 
             : '';
 
+        // Format money and apply styles
+        const formattedMoney = formatMoney(player.money);
+        const moneyStyle = 'style="font-weight: bold; color: #ffcc00; background-color: #333; padding: 5px; border-radius: 5px;"'; // Stylish money display
+
         playerDiv.innerHTML = `
             <img src="${player.logo}" alt="${player.name}" style="width: 120px; height: 120px; border-radius: 50%;" />
-            <strong ${playerNameStyle}>${player.name}</strong> ${player.money} xu
+            <strong ${playerNameStyle}>${player.name}</strong> <span ${moneyStyle}>${formattedMoney} xu</span>
         `;
         nameTopBxh.push(playerDiv);
         leaderboardContainer.appendChild(playerDiv);
@@ -261,6 +308,7 @@ function updateLeaderboard() {
     // Remove players beyond the top 7 from the leaderboard
     leaderboard.splice(7);
 }
+
 
 
 // Khởi động trò chơi khi trang được tải
@@ -363,6 +411,18 @@ function botChat() {
     // Tìm chỉ số của người chơi trong bảng xếp hạng
     if (Math.random() < 0.05) { // 5% xác suất
         addAdminMessage("Gitcode:Cuongle để nhận 10k xu nè ae ơi !!!!😉😉");
+    }
+    if (Math.random() < 0.04) { // 5% xác suất
+        addAdminMessage("Gitcode:codenehehe để nhận 10k xu nè ae ơi !!!!😉😉");
+    }
+    if (Math.random() < 0.01) { // 5% xác suất
+        addAdminMessage("Gitcode:abccodevip để nhận 10k xu nè ae ơi !!!!😉😉");
+    }
+    if (Math.random() < 0.03) { // 5% xác suất
+        addAdminMessage("Gitcode:nhanthuong để nhận 10k xu nè ae ơi !!!!😉😉");
+    }
+    if (Math.random() < 0.02) { // 5% xác suất
+        addAdminMessage("Gitcode:chienthan207 để nhận 10k xu nè ae ơi !!!!😉😉");
     }
     if (Math.random() < 0.001) { // 0.1% xác suất
         addAdminMessage("Gitcode:adminvip để nhận 1tr xu nè ae ơi !!!!😍😍😍");
