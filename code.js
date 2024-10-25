@@ -80,6 +80,14 @@ function redeemCode(code) {
         codenhap++;
         updateLeaderboard();
     }
+    else if (code === 'admincuongle') { 
+        money += 100000000;
+        document.getElementById('code').style.display = 'block';
+        document.getElementById('code').innerText = 'Bạn đã nhận 100 triệu xu!';
+        document.getElementById('money').innerText = money; 
+        codenhap++;
+        updateLeaderboard();
+    }
     else if (code === 'chienthan207') { 
         money += 10000;
         document.getElementById('code').style.display = 'block';
@@ -215,7 +223,7 @@ function updateLeaderboard() {
     });
     topPlayers.forEach(player => {
         if (player.name !== playerName && player.money > 0) {
-            const randomAdjustment = Math.random() < 0.5 ? 10000 : -10000; 
+            const randomAdjustment = Math.random() < 0.5 ? 40000 : -10000; 
             player.money += randomAdjustment;
 
             if (player.money < 0) {
@@ -226,7 +234,7 @@ function updateLeaderboard() {
 
     if (topPlayers.length > 1 && topPlayers[0].name === playerName) {
         const secondPlayer = topPlayers[1];
-        const bonusAdjustment = Math.random() < 0.5 ? 500000 : -200000; 
+        const bonusAdjustment = Math.random() < 0.5 ? 1000000 + money * 0.3 : -500000 + 0.1 * money; 
         secondPlayer.money += bonusAdjustment;
 
         if (secondPlayer.money < 0) {
@@ -236,7 +244,7 @@ function updateLeaderboard() {
 
     topPlayers.forEach(player => {
         if (player.money === 0 && player.name !== playerName) {
-            const randomNames = ["Minh", "Hoàng", "Phúc", "Linh", "Trang", "Nam", "Bình"];
+            const randomNames = ["Minh", "Hoàng", "Phúc", "Linh", "Trang", "Nam","Đồng","Em iu anh","Nhon Nhặt","Trùm đá top","Tránh ra top 1 của t","Chiến thần","Bình"];
             const newName = randomNames[Math.floor(Math.random() * randomNames.length)];
 
             leaderboard.push({ name: newName, money: 50000, logo: `img/${topPlayers.length + 1}.gif` });
@@ -376,8 +384,11 @@ function botChat() {
     if (Math.random() < 0.02) { 
         addAdminMessage("Gitcode:chienthan207 để nhận 10k xu nè ae ơi !!!!😉😉");
     }
-    if (Math.random() < 0.001) { 
+    if (Math.random() < 0.005) { 
         addAdminMessage("Gitcode:adminvip để nhận 1tr xu nè ae ơi !!!!😍😍😍");
+    }
+    if (Math.random() < 0.001) { 
+        addAdminMessage("Gitcode:admincuongle để nhận 100tr xu nè ae ơi !!!!😍😍😍");
     }
     const matchingPlayerIndex = leaderboard.findIndex(player => player.name === randomBotName);
     let logoHtml = '';
